@@ -1,0 +1,27 @@
+{
+  "name": "gulp-lazy-init",
+  "version": "1.0.0",
+  "description": "gulp task lazy initializer",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliaksandr-master/gulp-lazy-init.git"
+  },
+  "keywords": [
+    "gulp",
+    "task",
+    "lazy",
+    "init",
+    "structure",
+    "separate"
+  ],
+  "author": "Aliaksandr Master",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aliaksandr-master/gulp-lazy-init/issues"
+  },
+  "homepage": "https://github.com/aliaksandr-master/gulp-lazy-init#readme"
+}
