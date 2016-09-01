@@ -4,7 +4,8 @@
   "description": "gulp task lazy initializer",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "node_modules/.bin/gulp test",
+    "cleanup": "npm prune && npm i && npm dedupe"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,13 @@
   "bugs": {
     "url": "https://github.com/aliaksandr-master/gulp-lazy-init/issues"
   },
-  "homepage": "https://github.com/aliaksandr-master/gulp-lazy-init#readme"
+  "homepage": "https://github.com/aliaksandr-master/gulp-lazy-init#readme",
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint-config-eslint": "^3.0.0",
+    "eslint-plugin-require-path-exists": "^1.1.5",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-help": "^1.6.1"
+  }
 }
