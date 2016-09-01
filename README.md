@@ -11,7 +11,7 @@ Small lazy initializer for separated gulp tasks
 ## install
 
 ```
-npm install gulp-lazy-init -save-dev
+npm install gulp-lazy-init --save-dev
 ```
 
 ## Usage
