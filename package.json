@@ -11,6 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/aliaksandr-master/gulp-lazy-init.git"
   },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "keywords": [
     "gulp",
     "task",
