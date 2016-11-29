@@ -2,6 +2,7 @@
 'use strict';
 
 var path = require('path');
+var runSequence = require('run-sequence');
 
 module.exports = function (gulp, taskPathBuilder) {
   var collection = {};
@@ -20,7 +21,7 @@ module.exports = function (gulp, taskPathBuilder) {
     };
   }
 
-  return function (taskName) {
+  var buildTask = function (taskName) {
     var taskPath = taskPathBuilder(taskName);
 
     if (collection.hasOwnProperty(taskName)) {
@@ -37,4 +38,15 @@ module.exports = function (gulp, taskPathBuilder) {
 
     return taskName;
   };
+
+  buildTask.sequence = function () {
+    var args = Array.prototype.slice.call(arguments);
+
+    return function (callback) {
+      args.push(callback);
+      runSequence.apply(null, args);
+    }
+  };
+
+  return buildTask;
 };
