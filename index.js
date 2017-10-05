@@ -40,7 +40,7 @@ module.exports = function (gulp, taskPathBuilder) {
   };
 
   buildTask.sequence = function () {
-    var args = Array.prototype.slice.call(arguments);
+    var args = Array.prototype.slice.call(arguments).filter(Boolean);
 
     return function (callback) {
       args.push(callback);
