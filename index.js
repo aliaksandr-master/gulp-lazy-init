@@ -33,6 +33,10 @@ module.exports = function (gulp, taskPathBuilder) {
     gulp.task(taskName, function (callback) {
       var task = require(taskPath);
 
+      if (typeof task !== 'function') {
+        task = task.default;
+      }
+
       return task(callback);
     });
 
