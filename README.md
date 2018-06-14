@@ -19,7 +19,8 @@ npm install gulp-lazy-init --save-dev
 ```js
 const path = require('path');
 const lazyTaskBuilder = require('gulp-lazy-init');
-const task = lazyTaskBuilder(gulp, path.join(__dirname, '/gulp'));
+const ENABLE_LAZY = true; // by default
+const task = lazyTaskBuilder(gulp, path.join(__dirname, '/gulp', ENABLE_LAZY));
 
 gulp.task('test', 'test code of the project', [
   task('test-scripts')
