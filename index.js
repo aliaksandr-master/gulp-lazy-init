@@ -4,7 +4,9 @@
 var path = require('path');
 var runSequence = require('run-sequence');
 
-module.exports = function (gulp, taskPathBuilder) {
+module.exports = function (gulp, taskPathBuilder, lazy) {
+  lazy = lazy == null ? true : Boolean(lazy);
+
   var collection = {};
 
   if (!taskPathBuilder) {
@@ -29,6 +31,10 @@ module.exports = function (gulp, taskPathBuilder) {
     }
 
     collection[taskName] = true;
+
+    if (!lazy) {
+      require(taskPath);
+    }
 
     gulp.task(taskName, function (callback) {
       var task = require(taskPath);
