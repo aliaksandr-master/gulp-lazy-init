@@ -30,14 +30,10 @@
   },
   "homepage": "https://github.com/aliaksandr-master/gulp-lazy-init#readme",
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
-    "eslint-config-eslint": "^3.0.0",
-    "eslint-plugin-require-path-exists": "^1.1.5",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^3.0.1",
-    "gulp-help": "^1.6.1"
+    "babel-eslint": "^10.0.3",
+    "eslint-config-eslint": "^5.0.1",
+    "eslint-plugin-require-path-exists": "^1.1.9",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0"
   },
-  "dependencies": {
-    "run-sequence": "^1.2.2"
-  }
 }
