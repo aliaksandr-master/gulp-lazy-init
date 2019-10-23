@@ -1,13 +1,10 @@
 /*eslint-disable*/
 'use strict';
 
-var path = require('path');
-var runSequence = require('run-sequence');
+const path = require('path');
 
 module.exports = function (gulp, taskPathBuilder, lazy) {
   lazy = lazy == null ? true : Boolean(lazy);
-
-  var collection = {};
 
   if (!taskPathBuilder) {
     taskPathBuilder = function (taskName) {
@@ -16,46 +13,41 @@ module.exports = function (gulp, taskPathBuilder, lazy) {
   }
 
   if (typeof taskPathBuilder === 'string') {
-    var baseName = taskPathBuilder;
+    const baseName = taskPathBuilder;
 
     taskPathBuilder = function (taskName) {
       return path.resolve(baseName, taskName);
     };
   }
 
-  var buildTask = function (taskName) {
-    var taskPath = taskPathBuilder(taskName);
-
-    if (collection.hasOwnProperty(taskName)) {
-      return taskName;
-    }
-
-    collection[taskName] = true;
+  const buildTask = function (taskName) {
+    const taskPath = taskPathBuilder(taskName);
 
     if (!lazy) {
       require(taskPath);
     }
 
-    gulp.task(taskName, function (callback) {
-      var task = require(taskPath);
+    const fn = function (callback) {
+      let task = require(taskPath);
 
       if (typeof task !== 'function') {
         task = task.default;
       }
 
       return task(callback);
-    });
+    };
 
-    return taskName;
+    Object.defineProperty(fn, "name", { value: taskName });
+
+    return fn;
   };
 
-  buildTask.sequence = function () {
-    var args = Array.prototype.slice.call(arguments).filter(Boolean);
+  buildTask.series = function (...tasksFunctions) {
+    return gulp.series(...tasksFunctions);
+  };
 
-    return function (callback) {
-      args.push(callback);
-      runSequence.apply(null, args);
-    }
+  buildTask.parallel = function (...tasksFunctions) {
+    return gulp.parallel(...tasksFunctions);
   };
 
   return buildTask;

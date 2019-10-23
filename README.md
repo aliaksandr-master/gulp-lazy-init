@@ -22,8 +22,21 @@ const lazyTaskBuilder = require('gulp-lazy-init');
 const ENABLE_LAZY = true; // by default
 const task = lazyTaskBuilder(gulp, path.join(__dirname, '/gulp', ENABLE_LAZY));
 
-gulp.task('test', 'test code of the project', [
-  task('test-scripts')
-]);
+exports.test = task.series(
+  task('test-scripts'),
+  task.series(
+    task('test-scripts'),
+    task('test-scripts'),
+  ),
+  task.parallel(
+    task.series(
+      task('test-scripts'),
+      task('test-scripts'),
+    ),
+    task('test-scripts'),
+    task('test-scripts'),
+  ),
+  task('test-scripts'),
+);
 
 ```
