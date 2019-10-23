@@ -3,24 +3,23 @@
 
 const path = require('path');
 const lazyTaskBuilder = require('./index');
-const gulp = require('gulp-help')(require('gulp'), {
-  description: '',
-  hideEmpty: true,
-  hideDepsMessage: true
-});
+const gulp = require('gulp');
 
 const task = lazyTaskBuilder(gulp, path.join(__dirname, '/gulp'));
 
-
-
-
-gulp.task('default', [
-  'help'
-]);
-
-
-
-
-gulp.task('test', 'test code of the project', [
-  task('test-scripts')
-]);
+exports.test = task.series(
+  task('test-scripts'),
+  task.series(
+    task('test-scripts'),
+    task('test-scripts'),
+  ),
+  task.parallel(
+    task.series(
+      task('test-scripts'),
+      task('test-scripts'),
+    ),
+    task('test-scripts'),
+    task('test-scripts'),
+  ),
+  task('test-scripts'),
+);
